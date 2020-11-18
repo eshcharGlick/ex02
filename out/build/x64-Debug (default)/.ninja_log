@@ -1,0 +1,14 @@
+# ninja log v5
+5	1069	627306583	CMakeFiles/oop1_ex02.dir/src/main.cpp.obj	455467069449a75a
+1	1074	627306583	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+1074	1561	627306584	oop1_ex02.exe	f40f2d30c174384a
+5	981	627313662	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+4	666	627313703	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+1	451	627313716	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+1	460	627313891	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+6	600	627313891	CMakeFiles/oop1_ex02.dir/src/main.cpp.obj	455467069449a75a
+0	580	627313938	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+0	718	627313954	CMakeFiles/oop1_ex02.dir/src/main.cpp.obj	455467069449a75a
+7	721	627313954	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+4	665	627314127	CMakeFiles/oop1_ex02.dir/src/io.cpp.obj	4be79a1b31712ec6
+0	666	627314127	CMakeFiles/oop1_ex02.dir/src/main.cpp.obj	455467069449a75a
