@@ -1,47 +1,44 @@
 #include "Player.h"
 
 
-Player::Player(int xCord, int yCord)
+Player::Player(Vertex cord)
 {
-	m_xCord = xCord;
-	m_yCord = yCord;
+	m_currCord = m_startCord = cord;
 }
 
-int Player::get_X()
+Vertex Player::getVertex()
 {
-	return m_xCord;
-}
-
-int Player::get_Y()
-{
-	return m_yCord;
+	return m_currCord;
 }
 
 void Player::moveUp()
 {
-	m_yCord++;
+	m_currCord.m_row--;
 }
 
 void Player::moveDown()
 {
-	m_yCord--;
+	m_currCord.m_row++;
 }
 
 void Player::moveRight()
 {
-	m_xCord++;
+	m_currCord.m_col++;
 }
 
 void Player::moveLeft()
 {
-	m_xCord--;
+	m_currCord.m_col--;
+}
+
+int Player::getLives()
+{
+	return m_lives;
 }
 
 
-bool Player::dead()
+void Player::dead()
 {
 	m_lives -- ;
-	if (m_lives > 0)
-		return false;
-	return true;
+	m_currCord = m_startCord;
 }

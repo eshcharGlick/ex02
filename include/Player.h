@@ -1,24 +1,25 @@
 #pragma once
 
-#define NUM_OF_LIVES 3 ;
+#include <Vertex.h>
+const int NUM_OF_LIVES = 3 ;
 
 class Player
 {
 public:
-	Player(int xCord , int yCord);
+	Player() {}
+	Player(Vertex cord);
 
-	int get_X();
-	int get_Y();
+	Vertex getVertex();
 		
 	void moveUp();
 	void moveDown();
 	void moveRight();
 	void moveLeft();
-
-	bool dead();
+	int getLives();
+	void dead();
 
 private:
 	int m_lives = NUM_OF_LIVES;
-	int m_xCord;
-	int m_yCord;
+	Vertex m_currCord;
+	Vertex m_startCord;
 };
