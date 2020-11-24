@@ -1,14 +1,15 @@
 #pragma once
+#include <Vertex.h>
 
 class Coin
 {
 public:
-	Coin();
-
+	Coin(Vertex cord);
+	Vertex getVertex();
+	void picked();
 
 private:
-	int m_xCord;
-	int m_yCord;
 
-	bool m_collected = 0;
+	Vertex m_cord;
+
 };
