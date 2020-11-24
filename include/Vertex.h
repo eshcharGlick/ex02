@@ -8,8 +8,12 @@ struct Vertex
     double m_row = 0; // y
 
     Vertex() = default;
-    Vertex(double col, double row) : m_col(col), m_row(row) {}
+    Vertex( double row, double col) : m_col(col), m_row(row) {}
 
+    bool isHigherThan(const Vertex& other) const;
+    bool isToTheRightOf(const Vertex& other) const;
+    bool sameRow(const Vertex& other) const;
+    bool sameCol(const Vertex& other) const;
     bool same(Vertex other);
     
 };

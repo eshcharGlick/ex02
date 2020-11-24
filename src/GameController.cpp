@@ -13,8 +13,10 @@ using namespace::std;
 void GameController::ReadBoard()
 {
     auto board = std::ifstream("Board.txt");
-    string s = std::getline(board , 3);
-    m_size = atoi(s);
+    
+    string s;
+    std::getline(board,s);
+    m_size = stoi(s);
 
     for (int i = 0; i < m_size; i++)
     {
@@ -23,29 +25,21 @@ void GameController::ReadBoard()
         m_board.push_back(line);
         for (size_t j = 0; j < m_size; j++)
         {
+            Enemy e();
+            Coin c();
+ 
             switch (m_board[i][j])
             {
             case '@' : // player
                 m_player = Player(Vertex(i,j));
                 break;
             case '%':
-                Enemy e(Vertex(i, j));
+                e.setVertex((Vertex(i, j)));
                 m_enemies.push_back(e);
                 break;
-            case '-': // line
-                m_board[i][j] = '-';
-                break;
-            case 'H': // ladder
-                m_board[i][j] = 'H';
-                break;
-            case '#': // wall
-                m_board[i][j] = '#';
-                break;
             case '*':
-                Coin c(Vertex(i, j));
+                c =(Vertex(i, j));
                 m_coins.push_back(c);
-                break;
-            default:
                 break;
             }
         }
@@ -191,6 +185,73 @@ void GameController::movePlayer()
     if (m_board[m_player.getVertex().m_row][m_player.getVertex().m_col] != '-' && m_board[m_player.getVertex().m_row][m_player.getVertex().m_col] != 'H')
         while (!isFloor(m_board[m_player.getVertex().m_row+1][m_player.getVertex().m_col]) && m_player.getVertex().m_row < m_board.size() - 1)
             m_player.moveDown();
+}
+
+void GameController::moveEnemies()
+{
+    for (int i = 0; i < m_enemies.size(); i++) // reset enemies
+    {
+       moveToPlayer (m_enemies[1]);
+    }
+}
+
+void GameController::moveToPlayer(Enemy e)
+{
+    Vertex vP = m_player.getVertex();
+    Vertex vE = e.getVertex();
+    if (vP.sameRow (vE))
+    {
+        if (vP.isToTheRightOf(vE))
+        {
+            if (isValid(m_board[vE.m_row][vE.m_col + 1]))
+                e.moveRight();
+        }
+        else
+        {
+            if (isValid(m_board[vE.m_row][vE.m_col - 1]))
+                e.moveLeft();
+        }
+        return;
+    }
+    if (vP.sameCol(vE))
+    {
+        if (vP.isHigherThan (vE))
+        {
+
+        }
+        else
+        {
+
+        }
+
+        return;
+    }
+    if (vP.isHigherThan(vE))
+    {
+        if (vP.isToTheRightOf(vE)) // up & right
+        {
+
+            return;
+        }
+        else // up & left
+        {
+
+            return;
+        }
+    }
+    else
+    {
+        if (vP.isToTheRightOf(vE)) // down & right
+        {
+            
+            return;
+        }
+        else // down & left
+        {
+            
+            return;
+        }
+    }
 }
 
 bool GameController::isFloor(char c)

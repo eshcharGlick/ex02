@@ -32,6 +32,10 @@ private:
 
 	void printBoard();
 	void movePlayer();
+	void moveEnemies();
+	void moveToPlayer(Enemy e);
+	void moveStraight(Vertex vP, Vertex vE);
+
 	int checkConsequences();
 
 	bool isFloor(char c);

@@ -5,6 +5,7 @@
 class Enemy
 {
 public:
+	Enemy() : m_currCord(Vertex(0, 0)) ,m_startCord(Vertex(0, 0)) {}
 	Enemy(Vertex cord);
 
 	Vertex getVertex();
