@@ -4,4 +4,5 @@
 		"GameController.cpp"
 		"Enemy.cpp"
 "Player.cpp"
-"Coin.cpp")
+"Coin.cpp"
+"Location.cpp")

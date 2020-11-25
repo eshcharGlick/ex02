@@ -1,34 +1,34 @@
 #include "Player.h"
 
 
-Player::Player(Vertex cord)
+Player::Player(Location loc)
 {
-	m_currCord = m_startCord = cord;
+	m_currLoc = m_startLoc = loc;
 }
 
-Vertex Player::getVertex()
+Location Player::getLocation()
 {
-	return m_currCord;
+	return m_currLoc;
 }
 
 void Player::moveUp()
 {
-	m_currCord.m_row--;
+	m_currLoc.m_row--;
 }
 
 void Player::moveDown()
 {
-	m_currCord.m_row++;
+	m_currLoc.m_row++;
 }
 
 void Player::moveRight()
 {
-	m_currCord.m_col++;
+	m_currLoc.m_col++;
 }
 
 void Player::moveLeft()
 {
-	m_currCord.m_col--;
+	m_currLoc.m_col--;
 }
 
 int Player::getLives()
@@ -40,5 +40,5 @@ int Player::getLives()
 void Player::dead()
 {
 	m_lives -- ;
-	m_currCord = m_startCord;
+	m_currLoc = m_startLoc;
 }

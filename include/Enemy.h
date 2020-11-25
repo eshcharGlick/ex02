@@ -5,9 +5,9 @@
 class Enemy
 {
 public:
-	Enemy(Vertex cord);
+	Enemy(Location cord);
 
-	Vertex getVertex();
+	Location getLocation();
 
 	void moveUp();
 	void moveDown();
@@ -16,6 +16,6 @@ public:
 	void restart();
 
 private:
-	Vertex m_currCord;
-	Vertex m_startCord;
+	Location m_currLoc;
+	Location m_startLoc;
 };

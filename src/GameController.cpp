@@ -9,6 +9,8 @@
 #include "io.h"
 
 using namespace::std;
+using namespace::Screen;
+
 
 void GameController::ReadBoard()
 {
@@ -26,10 +28,10 @@ void GameController::ReadBoard()
             switch (m_board[i][j])
             {
             case '@' : // player
-                m_player = Player(Vertex(i,j));
+                m_player = Player(Location(i,j));
                 break;
             case '%':
-                Enemy e(Vertex(i, j));
+                Enemy e(Location(i, j));
                 m_enemies.push_back(e);
                 break;
             case '-': // line
@@ -42,7 +44,7 @@ void GameController::ReadBoard()
                 m_board[i][j] = '#';
                 break;
             case '*':
-                Coin c(Vertex(i, j));
+                Coin c(Location(i, j));
                 m_coins.push_back(c);
                 break;
             default:
@@ -54,16 +56,16 @@ void GameController::ReadBoard()
 
 void GameController::printBoard()
 {
+    Screen::resetLocation();
+
     for (int i = 0; i < m_size; i++)
         for (int j = 0; j < m_size; j++)
             cout << m_board[i][j];
-    // put 
-    if (m_board[m_player.getVertex().m_row][m_player.getVertex().m_col] == 'H')
+    Screen::setLocation(m_player.getLocation());
+    if (m_board[m_player.getLocation().m_row][m_player.getLocation().m_col] == 'H')
         cout << 'S';
     else
         cout << '@';
-
-
 }
 
 void GameController::run()
@@ -120,7 +122,7 @@ int GameController::checkConsequences()
 {
     for (int i = 0; i < m_coins.size(); i++)
     {
-        if (m_player.getVertex().same(m_coins[i].getVertex()))
+        if (m_player.getLocation().same(m_coins[i].getLocation()))
         {
             m_score += 2 * m_level;
             m_coins[i].picked();
@@ -135,7 +137,7 @@ int GameController::checkConsequences()
 
     for (int i = 0; i < m_enemies.size(); i++)
     {
-        if (m_player.getVertex().same(m_enemies[i].getVertex()))
+        if (m_player.getLocation().same(m_enemies[i].getLocation()))
         {
             m_player.dead(); // if end of lives
 
@@ -158,25 +160,25 @@ void GameController::movePlayer()
             switch (specialKeyBuffer)
             {
             case KB_LEFT:
-                if (isValid(m_board[m_player.getVertex().m_row][m_player.getVertex().m_col-1]) && m_player.getVertex().m_col > 0) {
+                if (isValid(m_board[m_player.getLocation().m_row][m_player.getLocation().m_col-1]) && m_player.getLocation().m_col > 0) {
                     m_player.moveLeft();
                     b = true;
                 }
                 break;
             case KB_RIGHT:
-                if (isValid(m_board[m_player.getVertex().m_row][m_player.getVertex().m_col+1]) && m_player.getVertex().m_col < m_board.size() -1){
+                if (isValid(m_board[m_player.getLocation().m_row][m_player.getLocation().m_col+1]) && m_player.getLocation().m_col < m_board.size() -1){
                     m_player.moveRight();
                     b = true;
                 }
                 break;
             case KB_UP:
-                if (isValid(m_board[m_player.getVertex().m_row-1][m_player.getVertex().m_col]) && m_player.getVertex().m_row > 0){
+                if (isValid(m_board[m_player.getLocation().m_row-1][m_player.getLocation().m_col]) && m_player.getLocation().m_row > 0){
                     m_player.moveUp();
                     b = true;
                 }
                 break;
             case KB_DOWN:
-                if (isValid(m_board[m_player.getVertex().m_row+1][m_player.getVertex().m_col]) && m_player.getVertex().m_row < m_board.size() -1){
+                if (isValid(m_board[m_player.getLocation().m_row+1][m_player.getLocation().m_col]) && m_player.getLocation().m_row < m_board.size() -1){
                     m_player.moveDown();
                     b = true;
                 }
@@ -188,8 +190,8 @@ void GameController::movePlayer()
     }
 
     // check floor
-    if (m_board[m_player.getVertex().m_row][m_player.getVertex().m_col] != '-' && m_board[m_player.getVertex().m_row][m_player.getVertex().m_col] != 'H')
-        while (!isFloor(m_board[m_player.getVertex().m_row+1][m_player.getVertex().m_col]) && m_player.getVertex().m_row < m_board.size() - 1)
+    if (m_board[m_player.getLocation().m_row][m_player.getLocation().m_col] != '-' && m_board[m_player.getLocation().m_row][m_player.getLocation().m_col] != 'H')
+        while (!isFloor(m_board[m_player.getLocation().m_row+1][m_player.getLocation().m_col]) && m_player.getLocation().m_row < m_board.size() - 1)
             m_player.moveDown();
 }
 
@@ -198,6 +200,7 @@ bool GameController::isFloor(char c)
     return (c == '#');
 }
 
+//is Wall - if not, then valid.
 bool GameController::isValid(char c)
 {
     return (!(c == '#'));

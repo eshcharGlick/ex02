@@ -4,12 +4,12 @@
 class Coin
 {
 public:
-	Coin(Vertex cord);
-	Vertex getVertex();
+	Coin(Location cord);
+	Location getLocation();
 	void picked();
 
 private:
 
-	Vertex m_cord;
+	Location m_cord;
 
 };

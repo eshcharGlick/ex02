@@ -7,9 +7,9 @@ class Player
 {
 public:
 	Player() {}
-	Player(Vertex cord);
+	Player(Location loc);
 
-	Vertex getVertex();
+	Location getLocation();
 		
 	void moveUp();
 	void moveDown();
@@ -20,6 +20,6 @@ public:
 
 private:
 	int m_lives = NUM_OF_LIVES;
-	Vertex m_currCord;
-	Vertex m_startCord;
+	Location m_currLoc;
+	Location m_startLoc;
 };
